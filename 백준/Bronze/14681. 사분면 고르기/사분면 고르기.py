@@ -1,0 +1,1 @@
+print("3421"[(int(input())>0)+(int(input())>0)*2])
