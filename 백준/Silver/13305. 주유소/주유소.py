@@ -9,7 +9,7 @@ next = 1  # 다음 주유할 도시 idx
 
 charge = 0  # 낸 요금
 
-while (next <= n-1):
+while (next < n):
     # 현재 주유소보다 가격이 싼 주유소 나올때까지 충전해야함
     # 다음 주유소가 더 싸다면 거기 갈때까지만 충전
     if price[pos] >= price[next]:
@@ -17,5 +17,11 @@ while (next <= n-1):
             charge += price[pos]*road[i]
         pos = next
     next += 1
+
+# 이동 안된부분 마저 이동하기
+if pos != n:
+    for i in range(pos, next-1):  # pos~next-1
+        charge += price[pos]*road[i]
+
 
 print(charge)
