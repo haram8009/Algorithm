@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Solution {
+    public static void main(String args[]) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int T;
+        T = sc.nextInt();
+
+        for (int test_case = 1; test_case <= T; test_case++) {
+            String str = test_case + " ";
+            int cnt = 0;
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == '3' || str.charAt(i) == '6' || str.charAt(i) == '9') {
+                    cnt++;
+                }
+            }
+            if (cnt == 0) {
+                System.out.print(str);
+            } else {
+                for (int i = 0; i < cnt; i++) {
+                    System.out.print("-");
+                }
+                System.out.print(" ");
+            }
+        }
+    }
+}
