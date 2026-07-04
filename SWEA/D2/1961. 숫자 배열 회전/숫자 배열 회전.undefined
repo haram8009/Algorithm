@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+class Solution {
+    public static void main(String args[]) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int T;
+        T = sc.nextInt();
+        for (int test_case = 1; test_case <= T; test_case++) {
+            int N = sc.nextInt();
+
+            int[] matrix = new int[49];
+            int[][] matrix90 = new int[7][7];
+            int[][] matrix180 = new int[7][7];
+            int[][] matrix270 = new int[7][7];
+
+            for (int i = 0; i < N * N; i++) {
+                matrix[i] = sc.nextInt();
+            }
+
+            // 90
+            int k = 0;
+            for (int j = N - 1; j >= 0; j--) {
+                for (int i = 0; i < N; i++) {
+                    matrix90[i][j] = matrix[k];
+                    k++;
+                }
+            }
+            // 180
+            k = 0;
+            for (int i = N - 1; i >= 0; i--) {
+                for (int j = N - 1; j >= 0; j--) {
+                    matrix180[i][j] = matrix[k];
+                    k++;
+                }
+            }
+            // 270
+            k = 0;
+            for (int j = 0; j < N; j++) {
+                for (int i = N - 1; i >= 0; i--) {
+                    matrix270[i][j] = matrix[k];
+                    k++;
+                }
+            }
+
+            // print
+            System.out.println("#" + test_case);
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    System.out.print(matrix90[i][j]);
+                }
+                System.out.print(" ");
+                for (int j = 0; j < N; j++) {
+                    System.out.print(matrix180[i][j]);
+                }
+                System.out.print(" ");
+                for (int j = 0; j < N; j++) {
+                    System.out.print(matrix270[i][j]);
+                }
+                System.out.print("\n");
+            }
+        }
+    }
+}
