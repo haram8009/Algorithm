@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+class Solution {
+    static int getTotalSum(int len, int dx, int dy, int nextx, int nexty, int[][] arr, int n) {
+        if ((len == 0) | !(0 <= nextx && nextx < n) | !(0 <= nexty && nexty < n)) {
+            return 0;
+        }
+        return arr[nextx][nexty] + getTotalSum(len - 1, dx, dy, nextx + dx, nexty + dy, arr, n);
+
+    }
+
+    public static void main(String args[]) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int T;
+        T = sc.nextInt();
+        /*
+         * 여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
+         */
+
+        for (int test_case = 1; test_case <= T; test_case++) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+
+            int[][] arr = new int[n][n];
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    arr[i][j] = sc.nextInt();
+                }
+            }
+
+            m--;
+            int maxSum = 0;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    int crossSum = arr[i][j];
+                    // 상하좌우
+                    crossSum += getTotalSum(m, -1, 0, i - 1, j, arr, n);
+                    crossSum += getTotalSum(m, 1, 0, i + 1, j, arr, n);
+                    crossSum += getTotalSum(m, 0, -1, i, j - 1, arr, n);
+                    crossSum += getTotalSum(m, 0, 1, i, j + 1, arr, n);
+
+                    int xSum = arr[i][j];
+                    // 좌상 우상 좌하 우하
+                    xSum += getTotalSum(m, -1, -1, i - 1, j - 1, arr, n);
+                    xSum += getTotalSum(m, -1, +1, i - 1, j + 1, arr, n);
+                    xSum += getTotalSum(m, 1, -1, i + 1, j - 1, arr, n);
+                    xSum += getTotalSum(m, 1, 1, i + 1, j + 1, arr, n);
+
+                    if (maxSum < crossSum)
+                        maxSum = crossSum;
+                    if (maxSum < xSum)
+                        maxSum = xSum;
+                }
+            }
+
+            System.out.printf("#%d %d\n", test_case, maxSum);
+        }
+    }
+}
