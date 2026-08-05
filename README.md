@@ -24,4 +24,9 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0026-remove-duplicates-from-sorted-array](https://github.com/haram8009/Algorithm/tree/main/0026-remove-duplicates-from-sorted-array/) | Easy |
 | [0027-remove-element](https://github.com/haram8009/Algorithm/tree/main/0027-remove-element/) | Easy |
 | [0080-remove-duplicates-from-sorted-array-ii](https://github.com/haram8009/Algorithm/tree/main/0080-remove-duplicates-from-sorted-array-ii/) | Medium |
+| [0121-best-time-to-buy-and-sell-stock](https://github.com/haram8009/Algorithm/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
+## Dynamic Programming
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0121-best-time-to-buy-and-sell-stock](https://github.com/haram8009/Algorithm/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
 <!---LeetCode Topics End-->
