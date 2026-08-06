@@ -2,11 +2,6 @@ import java.util.*;
 
 class Solution {
     public int romanToInt(String s) {
-        // 최대 3개까지 같은 로마자를 한 청크로 묶어서 계산        
-        // 오른쪽으로 가면서 작아져야하는데
-        // 큰 숫자가 오면 빼고 
-        // 작은숫자가 오면 더하기
-
         char[] arr = s.toCharArray();
 
         Map<Character, Integer> map = new HashMap<>() {
