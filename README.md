@@ -32,6 +32,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0088-merge-sorted-array](https://github.com/haram8009/Algorithm/tree/main/0088-merge-sorted-array/) | Easy |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/haram8009/Algorithm/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
 | [0169-majority-element](https://github.com/haram8009/Algorithm/tree/main/0169-majority-element/) | Easy |
+| [0274-h-index](https://github.com/haram8009/Algorithm/tree/main/0274-h-index/) | Medium |
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -41,6 +42,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | ------- | ------- |
 | [0088-merge-sorted-array](https://github.com/haram8009/Algorithm/tree/main/0088-merge-sorted-array/) | Easy |
 | [0169-majority-element](https://github.com/haram8009/Algorithm/tree/main/0169-majority-element/) | Easy |
+| [0274-h-index](https://github.com/haram8009/Algorithm/tree/main/0274-h-index/) | Medium |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -66,4 +68,8 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0014-longest-common-prefix](https://github.com/haram8009/Algorithm/tree/main/Java/Easy/0014-longest-common-prefix/) | Easy |
+## Counting Sort
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0274-h-index](https://github.com/haram8009/Algorithm/tree/main/0274-h-index/) | Medium |
 <!---LeetCode Topics End-->
