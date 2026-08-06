@@ -16,6 +16,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | ------- | ------- |
 | [0013-roman-to-integer](https://github.com/haram8009/Algorithm/tree/main/0013-roman-to-integer/) | Easy |
 | [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/haram8009/Algorithm/tree/master/0028-find-the-index-of-the-first-occurrence-in-a-string) |
+| [0058-length-of-last-word](https://github.com/haram8009/Algorithm/tree/main/Java/Easy/0058-length-of-last-word/) | Easy |
 ## String Matching
 | Problem Name | Difficulty |
 | ------- | ------- |
