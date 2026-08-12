@@ -34,6 +34,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0169-majority-element](https://github.com/haram8009/Algorithm/tree/main/0169-majority-element/) | Easy |
 | [0238-product-of-array-except-self](https://github.com/haram8009/Algorithm/tree/main/Python3/Medium/0238-product-of-array-except-self/) | Medium |
 | [0274-h-index](https://github.com/haram8009/Algorithm/tree/main/0274-h-index/) | Medium |
+| [0380-insert-delete-getrandom-o1](https://github.com/haram8009/Algorithm/tree/main/Java/Medium/0380-insert-delete-getrandom-o1/) | Medium |
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -49,6 +50,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | ------- | ------- |
 | [0013-roman-to-integer](https://github.com/haram8009/Algorithm/tree/main/0013-roman-to-integer/) | Easy |
 | [0169-majority-element](https://github.com/haram8009/Algorithm/tree/main/0169-majority-element/) | Easy |
+| [0380-insert-delete-getrandom-o1](https://github.com/haram8009/Algorithm/tree/main/Java/Medium/0380-insert-delete-getrandom-o1/) | Medium |
 ## Divide and Conquer
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -65,6 +67,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0013-roman-to-integer](https://github.com/haram8009/Algorithm/tree/main/0013-roman-to-integer/) | Easy |
+| [0380-insert-delete-getrandom-o1](https://github.com/haram8009/Algorithm/tree/main/Java/Medium/0380-insert-delete-getrandom-o1/) | Medium |
 ## Trie
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -89,4 +92,12 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/haram8009/Algorithm/tree/main/Python3/Easy/0028-find-the-index-of-the-first-occurrence-in-a-string/) | Easy |
+## Design
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0380-insert-delete-getrandom-o1](https://github.com/haram8009/Algorithm/tree/main/Java/Medium/0380-insert-delete-getrandom-o1/) | Medium |
+## Randomized
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0380-insert-delete-getrandom-o1](https://github.com/haram8009/Algorithm/tree/main/Java/Medium/0380-insert-delete-getrandom-o1/) | Medium |
 <!---LeetCode Topics End-->
