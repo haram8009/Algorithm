@@ -32,6 +32,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | [0088-merge-sorted-array](https://github.com/haram8009/Algorithm/tree/main/0088-merge-sorted-array/) | Easy |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/haram8009/Algorithm/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
 | [0169-majority-element](https://github.com/haram8009/Algorithm/tree/main/0169-majority-element/) | Easy |
+| [0238-product-of-array-except-self](https://github.com/haram8009/Algorithm/tree/main/Python3/Medium/0238-product-of-array-except-self/) | Medium |
 | [0274-h-index](https://github.com/haram8009/Algorithm/tree/main/0274-h-index/) | Medium |
 ## Dynamic Programming
 | Problem Name | Difficulty |
@@ -72,4 +73,8 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0274-h-index](https://github.com/haram8009/Algorithm/tree/main/0274-h-index/) | Medium |
+## Prefix Sum
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0238-product-of-array-except-self](https://github.com/haram8009/Algorithm/tree/main/Python3/Medium/0238-product-of-array-except-self/) | Medium |
 <!---LeetCode Topics End-->
