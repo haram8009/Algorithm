@@ -15,6 +15,7 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 ## String
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0006-zigzag-conversion](https://github.com/haram8009/Algorithm/tree/main/Python3/Medium/0006-zigzag-conversion/) | Medium |
 | [0013-roman-to-integer](https://github.com/haram8009/Algorithm/tree/main/0013-roman-to-integer/) | Easy |
 | [0014-longest-common-prefix](https://github.com/haram8009/Algorithm/tree/main/Java/Easy/0014-longest-common-prefix/) | Easy |
 | [0028-find-the-index-of-the-first-occurrence-in-a-string](https://github.com/haram8009/Algorithm/tree/master/0028-find-the-index-of-the-first-occurrence-in-a-string) |
