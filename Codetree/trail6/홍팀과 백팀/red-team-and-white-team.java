@@ -3,7 +3,8 @@ import java.util.*;
 public class Main {
     static Map<Integer, ArrayList<Integer>> graph;
     static int[] parents;
-    static int answer;
+    static int[] againsts;
+    static int answer; // 모순이면 0
 
     public static void main(String[] args) {
 
@@ -13,47 +14,58 @@ public class Main {
         // Please write your code here.
 
         parents = new int[n + 1];
-        graph = new HashMap<>();
+        againsts = new int[n + 1];
+        answer = 1;
+
+        for (int i = 0; i < n + 1; i++) {
+            parents[i] = i;
+        }
 
         int a, b, idx;
         for (int i = 0; i < m; i++) {
             a = sc.nextInt();
             b = sc.nextInt();
 
-            graph.computeIfAbsent(a, k -> new ArrayList<>()).add(b);
-            graph.computeIfAbsent(b, k -> new ArrayList<>()).add(a);
+            beta(a, b);
         }
 
-        answer = 1;
-
-        // 1 vs -1
-
-        // 먼저 마킹
-        // 미방문 노드이면 1로 시작
-        for (int node : graph.keySet()) {
-            if (parents[node] == 0) {
-                mark(node, 1);
-            }
-        }
-        System.out.println(answer);
+        System.out.println(parents[1] = answer);
     }
 
-    static void mark(int node, int flag) {
-//        System.out.println("" + node + " " + flag);
-
-        // 입력, 인접 노드 방문
-        parents[node] = flag;
-        // System.out.println(parents[node]);
-        int opp = flag * (-1);
-        for (int next : graph.get(node)) {
-            if (parents[next] == 0)
-                mark(next, opp);
-            else if (parents[next]==flag)
-            {
-                answer=0;
-                return;
-            }
-        }
+    static int find(int x) {
+        if (parents[x] == x)
+            return x;
+        return parents[x] = find(parents[x]);
     }
 
+    static void union(int a, int b) {
+        int A = find(a);
+        int B = find(b);
+        parents[A] = B;
+    }
+
+    static void beta(int x, int y) {
+        int X = find(x);
+        int Y = find(y);
+
+        if (X == Y) {
+            answer = 0;
+            return;
+        }
+
+        if (againsts[X] != 0) {
+            union(againsts[X], Y);
+        }
+
+        if (againsts[Y] != 0) {
+            union(againsts[Y], X);
+        }
+
+        int XX = find(X);
+        int YY = find(Y);
+        
+        againsts[XX] = Y;
+        againsts[YY] = X;
+
+    }
 }
