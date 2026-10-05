@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
@@ -7,10 +9,11 @@ public class Main {
     static List<int[]>[] graph; // [ to, weight ]
     static List<int[]>[] oppGraph;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
         graph = new List[n + 1];
         oppGraph = new List[n + 1];
@@ -26,9 +29,10 @@ public class Main {
         }
 
         for (int i = 0; i < m; i++) {
-            int u = sc.nextInt();
-            int v = sc.nextInt();
-            int t = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+            int t = Integer.parseInt(st.nextToken());
 
             graph[u].add(new int[] { v, t });
             oppGraph[v].add(new int[] { u, t });
@@ -75,7 +79,7 @@ public class Main {
             for (int[] next : oppGraph[node]) {
                 int nnode = next[0];
                 int nw = next[1];
-                if (dp[node] >= 0 && dp[nnode] + nw == dp[node]) {
+                if (dp[nnode] >= 0 && dp[nnode] + nw == dp[node]) {
                     cnt++;
                     if (!visited[nnode]) {
                         visited[nnode] = true;
