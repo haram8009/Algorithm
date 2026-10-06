@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10181e">
+  <title>Algorithm 기록실</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Algorithm 기록실 홈">
+      <span class="brand-mark">A</span>
+      <span>Algorithm <small>기록실</small></span>
+    </a>
+    <a class="repo-link" href="https://github.com/haram8009/Algorithm" target="_blank" rel="noopener">GitHub 레포 ↗</a>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">ONE SOURCE OF TRUTH</p>
+        <h1>푼 문제를 한곳에서.</h1>
+        <p class="hero-copy">코드, 회고, 다시 풀 문제를 검색하고 날짜별로 돌아보세요.</p>
+      </div>
+      <div class="hero-icon" aria-hidden="true">⌘</div>
+    </section>
+
+    <section class="stats" aria-label="풀이 통계">
+      <article class="stat-card"><span>전체 기록</span><strong id="stat-total">—</strong></article>
+      <article class="stat-card"><span>풀이 코드 있음</span><strong id="stat-solved">—</strong></article>
+      <article class="stat-card"><span>다시 풀 문제</span><strong id="stat-retry">—</strong></article>
+      <article class="stat-card"><span>예정 / 미풀이</span><strong id="stat-planned">—</strong></article>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PROBLEM LIBRARY</p>
+          <h2>문제 모아보기</h2>
+        </div>
+        <div class="view-switch" role="group" aria-label="보기 방식">
+          <button class="view-button active" data-view="table" aria-pressed="true">☷ 표</button>
+          <button class="view-button" data-view="calendar" aria-pressed="false">▦ 캘린더</button>
+        </div>
+      </div>
+
+      <div class="filter-panel">
+        <label class="search-field">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="문제, 회고, 유형 검색" aria-label="문제 검색">
+        </label>
+        <label>플랫폼<select id="platform"><option value="">전체 플랫폼</option></select></label>
+        <label>난이도<select id="difficulty"><option value="">전체 난이도</option></select></label>
+        <label>유형<select id="topic"><option value="">전체 유형</option></select></label>
+        <label>구분<select id="group"><option value="">전체 구분</option></select></label>
+        <label>결과<select id="result"><option value="">전체 결과</option></select></label>
+        <label>언어<select id="language"><option value="">전체 언어</option></select></label>
+        <label>정렬<select id="sort"><option value="date-desc">최근 푼 순</option><option value="date-asc">오래된 순</option><option value="title-asc">문제 이름순</option></select></label>
+        <label class="check-filter"><input id="retry-only" type="checkbox"> 다시 풀 문제만</label>
+        <label class="check-filter"><input id="planned-only" type="checkbox"> 예정 / 미풀이만</label>
+        <button id="reset" class="reset-button" type="button">필터 초기화</button>
+      </div>
+
+      <div class="result-bar"><span id="result-count">불러오는 중…</span><span id="load-state" role="status"></span></div>
+      <section id="table-view" class="table-wrap" aria-label="문제 목록"></section>
+      <section id="calendar-view" class="calendar-wrap" aria-label="풀이 캘린더" hidden>
+        <div class="calendar-toolbar">
+          <button id="prev-month" class="icon-button" aria-label="이전 달">←</button>
+          <h3 id="month-label"></h3>
+          <button id="next-month" class="icon-button" aria-label="다음 달">→</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+      </section>
+    </section>
+    <footer>기록은 이 레포의 문제별 NOTE.md에서 자동으로 모읍니다.</footer>
+  </main>
+
+  <dialog id="detail-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
+    <div id="detail-content"></div>
+  </dialog>
+</body>
+</html>

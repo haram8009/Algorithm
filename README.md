@@ -1,6 +1,12 @@
 # Algorithm
 This is an auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
 
+
+
+## 알고리즘 풀이 대시보드
+
+[문제 기록 모아보기](https://haram8009.github.io/Algorithm/) · 풀이 폴더에 NOTE.md를 추가하면 표와 캘린더에 자동 반영됩니다.
+
 <!---LeetCode Topics Start-->
 # LeetCode Topics
 ## Two Pointers
