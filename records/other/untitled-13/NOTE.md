@@ -18,7 +18,4 @@ complexity: ""
 time_minutes: ""
 code_url: ""
 ---
-
-## 한 줄 인사이트
-
-
+<empty-block/>
