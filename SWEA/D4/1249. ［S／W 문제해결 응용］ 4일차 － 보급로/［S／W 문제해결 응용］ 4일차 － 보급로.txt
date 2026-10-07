@@ -8,7 +8,6 @@ class Solution {
 
 	static int[][] map;
 	static int[][] dp;
-	static boolean[][] visited;
 
 	// 상 하 좌 우
 	static int[] dr = { -1, 1, 0, 0 };
@@ -44,7 +43,6 @@ class Solution {
 
 			map = new int[n][n];
 			dp = new int[n][n];
-			visited = new boolean[n][n];
 
 			for (int i = 0; i < n; i++) {
 //				st = new StringTokenizer(br.readLine(), "");
@@ -66,12 +64,9 @@ class Solution {
 			while (!pq.isEmpty()) {
 				Point pos = pq.poll();
 //				System.out.println("===\npos r, c: " + pos.r + ", " + pos.c);
-				if (visited[pos.r][pos.c])
+				// 큐에 들어간 뒤 더 짧은 경로가 발견된 오래된 항목이면 건너뜀
+				if (pos.w != dp[pos.r][pos.c])
 					continue;
-				if(pos.w > dp[pos.r][pos.c])
-					continue;
-
-				visited[pos.r][pos.c] = true;
 
 				for (int d = 0; d < 4; d++) {
 					int nr = pos.r + dr[d];
@@ -79,9 +74,9 @@ class Solution {
 					if (isInRange(nr, nc)) {
 //						System.out.println("- nr, nc: " + nr + ", " + nc);
 
-						int dist = dp[pos.r][pos.c] + map[nr][nc];
+						int dist = pos.w + map[nr][nc];
 
-						if (!visited[nr][nc] && dist < dp[nr][nc]) {
+						if (dist < dp[nr][nc]) {
 							dp[nr][nc] = dist;
 							pq.offer(new Point(nr, nc, dist));
 						}
@@ -99,3 +94,5 @@ class Solution {
 		return r >= 0 && c >= 0 && r < n && c < n;
 	}
 }
+
+// 시간복잡도 O(n^2)
