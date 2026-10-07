@@ -68,6 +68,8 @@ class Solution {
 //				System.out.println("===\npos r, c: " + pos.r + ", " + pos.c);
 				if (visited[pos.r][pos.c])
 					continue;
+				if(pos.w > dp[pos.r][pos.c])
+					continue;
 
 				visited[pos.r][pos.c] = true;
 
@@ -79,14 +81,12 @@ class Solution {
 
 						int dist = dp[pos.r][pos.c] + map[nr][nc];
 
-						if (dist < dp[nr][nc]) {
+						if (!visited[nr][nc] && dist < dp[nr][nc]) {
 							dp[nr][nc] = dist;
+							pq.offer(new Point(nr, nc, dist));
 						}
 
-//						System.out.println("dp[nr][nc]: " + dist);
-
-						if (!visited[nr][nc])
-							pq.offer(new Point(nr, nc, dist));
+//						System.out.println("dp[nr][nc]: " + dist);							
 					}
 				}
 			}
