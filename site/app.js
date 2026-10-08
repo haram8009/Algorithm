@@ -93,9 +93,9 @@
     document.querySelectorAll(".view-button").forEach(b=>{const active=b.dataset.view===name;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active));});
   }
   function bind() {
-    ["search","platform","difficulty","topic","group","result","language","sort","retry-only","planned-only"].forEach(id=>$("#"+id).addEventListener("input",render));
+    ["search","platform","difficulty","topic","result","language","sort","retry-only","planned-only"].forEach(id=>$("#"+id).addEventListener("input",render));
     document.querySelectorAll(".view-button").forEach(b=>b.addEventListener("click",()=>view(b.dataset.view)));
-    $("#reset").addEventListener("click",()=>{["search","platform","difficulty","topic","group","result","language"].forEach(id=>$("#"+id).value="");$("#sort").value="date-desc";$("#retry-only").checked=false;$("#planned-only").checked=false;render();});
+    $("#reset").addEventListener("click",()=>{["search","platform","difficulty","topic","result","language"].forEach(id=>$("#"+id).value="");$("#sort").value="date-desc";$("#retry-only").checked=false;$("#planned-only").checked=false;render();});
     $("#prev-month").addEventListener("click",()=>{state.month=new Date(state.month.getFullYear(),state.month.getMonth()-1,1);render();});
     $("#next-month").addEventListener("click",()=>{state.month=new Date(state.month.getFullYear(),state.month.getMonth()+1,1);render();});
     $("#table-view").addEventListener("click",e=>{const row=e.target.closest("[data-id]");if(row)details(row.dataset.id);});
