@@ -16,7 +16,7 @@ public class Main {
             coloredVertices[i] = Integer.parseInt(st.nextToken());
         }
 
-        List<int[]>[] graph = new List[N + 1];
+        List<Node>[] graph = new List[N + 1];
         for (int i = 1; i <= N; i++) {
             graph[i] = new ArrayList<>();
         }
@@ -27,8 +27,8 @@ public class Main {
             int v = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
 
-            graph[u].add(new int[] {v, w});
-            graph[v].add(new int[] {u, w});
+            graph[u].add(new Node(v, w));
+            graph[v].add(new Node(u, w));
         }
 
         PriorityQueue<Node> pq = new PriorityQueue<>();
@@ -50,12 +50,12 @@ public class Main {
             selected[node.to] = true;
 
             // System.out.println("+++poll+++\n" + node.to + " " + node.w);
-            for (int[] nnode : graph[node.to]) {
+            for (Node nnode : graph[node.to]) {
                 // nnode: [to, w]
-                if (!selected[nnode[0]] && nnode[1] < dp[nnode[0]]) {
+                if (!selected[nnode.to] && nnode.w < dp[nnode.to]) {
                     // System.out.println("===offer===\n" + nnode[0] + " " + nnode[1]);
-                    dp[nnode[0]] = nnode[1];
-                    pq.offer(new Node(nnode[0], nnode[1]));
+                    dp[nnode.to] = nnode.w;
+                    pq.offer(new Node(nnode.to, nnode.w));
                     // System.out.println(Arrays.toString(dp));
                 }
             }
