@@ -1,27 +1,31 @@
 import java.util.*;
+import java.io.*;
+
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
-        int K = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
         int[] coloredVertices = new int[K];
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < K; i++) {
-            coloredVertices[i] = sc.nextInt();
+            coloredVertices[i] = Integer.parseInt(st.nextToken());
         }
-        // int[][] edges = new int[M][3];
 
         List<int[]>[] graph = new List[N + 1];
         for (int i = 1; i <= N; i++) {
             graph[i] = new ArrayList<>();
         }
+
         for (int i = 0; i < M; i++) {
-            // edges[i][0] = sc.nextInt();
-            // edges[i][1] = sc.nextInt();
-            // edges[i][2] = sc.nextInt();
-            int u = sc.nextInt();
-            int v = sc.nextInt();
-            int w = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+            int w = Integer.parseInt(st.nextToken());
 
             graph[u].add(new int[] {v, w});
             graph[v].add(new int[] {u, w});
