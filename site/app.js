@@ -16,18 +16,16 @@
     options("platform",state.records.map(x=>x.platform));
     options("difficulty",state.records.map(x=>x.difficulty));
     options("topic",state.records.flatMap(x=>arr(x.topics)));
-    options("group",state.records.map(x=>x.study_group));
     options("result",state.records.map(x=>x.result||x.status));
     options("language",state.records.flatMap(x=>arr(x.language)));
   }
   function filtered() {
     const q=$("#search").value.trim().toLocaleLowerCase("ko");
     let data=state.records.filter(x=>{
-      const hay=[x.title,x.platform,x.problem_id,x.difficulty,x.study_group,x.result,x.status,x.complexity,x.insight,x.problem_url,...arr(x.topics),...arr(x.language)].join(" ").toLocaleLowerCase("ko");
+      const hay=[x.title,x.platform,x.problem_id,x.difficulty,x.result,x.status,x.complexity,x.insight,x.problem_url,...arr(x.topics),...arr(x.language)].join(" ").toLocaleLowerCase("ko");
       return (!q||hay.includes(q))&&(!$("#platform").value||x.platform===$("#platform").value)
         &&(!$("#difficulty").value||x.difficulty===$("#difficulty").value)
         &&(!$("#topic").value||arr(x.topics).includes($("#topic").value))
-        &&(!$("#group").value||x.study_group===$("#group").value)
         &&(!$("#result").value||(x.result||x.status)===$("#result").value)
         &&(!$("#language").value||arr(x.language).includes($("#language").value))
         &&(!$("#retry-only").checked||x.retry_needed===true)
@@ -47,9 +45,9 @@
       const result=x.result||x.status||"미기록";
       const dclass=String(x.difficulty||"").toLowerCase();
       const rclass=(result==="Accepted"||result==="풀이 완료")?"solved":(["못 품","Wrong Answer","TLE"].includes(result)?"retry":"");
-      return '<tr data-id="'+esc(x.problem_key)+'"><td><span class="problem-title">'+esc(x.title)+'</span><span class="subline">'+esc(x.problem_id?"#"+x.problem_id:((x.code_files||[]).length||x.code_url?"코드 연결됨":x.planned?"미풀이 기록":"풀이 기록"))+'</span></td><td>'+esc(x.platform||"—")+'</td><td>'+(x.difficulty?'<span class="pill '+esc(dclass)+'">'+esc(x.difficulty)+'</span>':"—")+'</td><td>'+topics(x)+'</td><td>'+esc(x.study_group||"—")+'</td><td><span class="pill '+rclass+'">'+esc(result)+'</span></td><td>'+esc(dateText(x.solved_at))+'</td><td>'+(x.retry_needed?'<span class="pill retry">다시 풀기</span>':"—")+'</td></tr>';
+      return '<tr data-id="'+esc(x.problem_key)+'"><td><span class="problem-title">'+esc(x.title)+'</span><span class="subline">'+esc(x.problem_id?"#"+x.problem_id:((x.code_files||[]).length||x.code_url?"코드 연결됨":x.planned?"미풀이 기록":"풀이 기록"))+'</span></td><td>'+esc(x.platform||"—")+'</td><td>'+(x.difficulty?'<span class="pill '+esc(dclass)+'">'+esc(x.difficulty)+'</span>':"—")+'</td><td>'+topics(x)+'</td><td><span class="pill '+rclass+'">'+esc(result)+'</span></td><td>'+esc(dateText(x.solved_at))+'</td><td>'+(x.retry_needed?'<span class="pill retry">다시 풀기</span>':"—")+'</td></tr>';
     }).join("");
-    $("#table-view").innerHTML='<table><thead><tr><th>문제</th><th>플랫폼</th><th>난이도</th><th>유형</th><th>구분</th><th>결과</th><th>푼 날짜</th><th>복습</th></tr></thead><tbody>'+body+'</tbody></table>';
+    $("#table-view").innerHTML='<table><thead><tr><th>문제</th><th>플랫폼</th><th>난이도</th><th>유형</th><th>결과</th><th>푼 날짜</th><th>복습</th></tr></thead><tbody>'+body+'</tbody></table>';
   }
   function renderCalendar(data) {
     const y=state.month.getFullYear(),m=state.month.getMonth(),first=new Date(y,m,1),offset=(first.getDay()+6)%7;
@@ -87,7 +85,7 @@
     (x.code_files||[]).forEach(f=>links.push('<a class="secondary" href="'+esc(f.url)+'" target="_blank" rel="noopener">'+esc(f.language)+' 코드 ↗</a>'));
     if(!x.code_files?.length&&x.code_url)links.push('<a class="secondary" href="'+esc(x.code_url)+'" target="_blank" rel="noopener">코드 ↗</a>');
     if(x.note_url)links.push('<a class="secondary" href="'+esc(x.note_url)+'" target="_blank" rel="noopener">NOTE.md ↗</a>');
-    $("#detail-content").innerHTML='<p class="eyebrow">'+esc(x.platform||"문제 기록")+'</p><h2 class="detail-title">'+esc(x.title)+'</h2><div class="detail-meta">'+esc(x.problem_id?"문제 번호 "+x.problem_id+" · ":"")+esc(x.difficulty||"난이도 미기록")+'</div><div class="detail-grid">'+field("유형",x.topics)+field("스터디 구분",x.study_group)+field("풀이 결과",x.result||x.status)+field("푼 날짜",dateText(x.solved_at))+field("다시 푼 날짜",dateText(x.retry_at))+field("재도전 필요",x.retry_needed)+field("언어",x.language)+field("풀이 시간",x.time_minutes?x.time_minutes+"분":"")+field("복잡도",x.complexity)+'</div>'+(x.insight?'<h3>한 줄 인사이트</h3><div class="detail-insight">'+esc(x.insight)+'</div>':"")+'<div class="detail-links">'+links.join("")+'</div>';
+    $("#detail-content").innerHTML='<p class="eyebrow">'+esc(x.platform||"문제 기록")+'</p><h2 class="detail-title">'+esc(x.title)+'</h2><div class="detail-meta">'+esc(x.problem_id?"문제 번호 "+x.problem_id+" · ":"")+esc(x.difficulty||"난이도 미기록")+'</div><div class="detail-grid">'+field("유형",x.topics)+field("풀이 결과",x.result||x.status)+field("푼 날짜",dateText(x.solved_at))+field("다시 푼 날짜",dateText(x.retry_at))+field("재도전 필요",x.retry_needed)+field("언어",x.language)+field("풀이 시간",x.time_minutes?x.time_minutes+"분":"")+field("복잡도",x.complexity)+'</div>'+(x.insight?'<h3>한 줄 인사이트</h3><div class="detail-insight">'+esc(x.insight)+'</div>':"")+'<div class="detail-links">'+links.join("")+'</div>';
     $("#detail-dialog").showModal();
   }
   function view(name) {
