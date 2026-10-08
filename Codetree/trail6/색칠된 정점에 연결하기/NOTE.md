@@ -1,4 +1,23 @@
-# 색칠된 정점에 연결하기
+---
+schema_version: 1
+platform: "Codetree"
+title: "색칠된 정점에 연결하기"
+problem_url: ""
+notion_page_url: ""
+legacy_title: "\\[코드트리\\] 색칠된 정점에 연결하기"
+problem_id: ""
+difficulty: ""
+topics: ["Graph", "MST", "Greedy", "Priority Queue"]
+study_group: "선택"
+result: "Accepted"
+solved_at: "2026-10-08"
+retry_needed: false
+retry_at: ""
+language: ["Java"]
+complexity: "O((N + M) log M) / O(N + M)"
+time_minutes: ""
+code_url: "https://github.com/haram8009/Algorithm/blob/main/Codetree/trail6/%EC%83%89%EC%B9%A0%EB%90%9C%20%EC%A0%95%EC%A0%90%EC%97%90%20%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0/connect-to-colored-vertices.java"
+---
 
 ## 핵심 아이디어
 
