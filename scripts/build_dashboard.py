@@ -11,7 +11,7 @@ import sys
 import unicodedata
 from collections import OrderedDict
 from pathlib import Path
-from urllib.parse import quote, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, quote, urlencode, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
@@ -167,10 +167,21 @@ def canonical_url(url: str) -> str:
     parts = urlsplit(str(url).strip())
     host = parts.netloc.lower().removeprefix("www.")
     path = re.sub(r"/+", "/", parts.path).rstrip("/")
-    return urlunsplit((parts.scheme.lower() or "https", host, path, "", ""))
+    query = ""
+    if host == "swexpertacademy.com":
+        contest_id = next(
+            (value for key, value in parse_qsl(parts.query, keep_blank_values=True)
+             if key.casefold() == "contestprobid" and value),
+            ""
+        )
+        if contest_id:
+            query = urlencode({"contestProbId": contest_id})
+    return urlunsplit((parts.scheme.lower() or "https", host, path, query, ""))
 
 def stable_key(platform: str, title: str, url: str, problem_id=None) -> str:
     normalized_url = canonical_url(url)
+    if platform == "SWEA" and problem_id not in (None, ""):
+        return platform + "|id|" + str(problem_id).strip() + "|url|" + normalized_url
     if normalized_url:
         return platform + "|url|" + normalized_url
     if problem_id not in (None, ""):
@@ -184,13 +195,16 @@ def code_records() -> list[dict]:
     added = first_added_dates()
     grouped: OrderedDict[str, dict] = OrderedDict()
     for file in sorted(ROOT.rglob("*")):
-        if not file.is_file() or file.suffix.lower() not in CODE_EXTENSIONS:
+        if not file.is_file():
             continue
         relative = file.relative_to(ROOT)
         if any(part in {".git", "site", "records", "scripts"} for part in relative.parts):
             continue
         folder = file.parent
         platform = platform_for(relative)
+        is_swea_text = platform == "SWEA" and file.suffix.lower() == ".txt"
+        if file.suffix.lower() not in CODE_EXTENSIONS and not is_swea_text:
+            continue
         title, url, difficulty = read_problem_info(folder, platform)
         id_match = re.match(r"^(\d+)[.-]", folder.name)
         problem_id = id_match.group(1) if id_match else ""
@@ -214,14 +228,15 @@ def code_records() -> list[dict]:
         language = {
             ".java": "Java", ".py": "Python", ".sql": "SQL", ".js": "JavaScript",
             ".ts": "TypeScript", ".cpp": "C++", ".cc": "C++", ".c": "C",
-            ".cs": "C#", ".go": "Go", ".kt": "Kotlin", ".swift": "Swift"
+            ".cs": "C#", ".go": "Go", ".kt": "Kotlin", ".swift": "Swift",
+            ".txt": ".txt"
         }.get(file.suffix.lower(), file.suffix.lstrip("."))
         record["code_files"].append({
             "name": file.name,
             "url": source_url(relative.as_posix()),
             "language": language
         })
-        if language not in record["language"]:
+        if language != ".txt" and language not in record["language"]:
             record["language"].append(language)
         if not record["code_url"]:
             record["code_url"] = source_url(relative.as_posix())
@@ -249,6 +264,7 @@ def overlay_note(record: dict, note: dict) -> dict:
         record["code_url"] = record["code_files"][0]["url"]
         record["language"] = sorted(set(record.get("language", []) + [
             item["language"] for item in record["code_files"]
+            if item["language"] != ".txt"
         ]))
     elif note.get("code_url"):
         record["code_url"] = note["code_url"]
