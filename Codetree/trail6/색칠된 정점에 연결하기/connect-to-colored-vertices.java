@@ -45,17 +45,14 @@ public class Main {
         // 2. 거기서부터 그리디하게 노드 연결시킴
         while (!pq.isEmpty()) {
             Node node = pq.poll();
-            if (node.w > dp[node.to]) continue;
+            // if (node.w > dp[node.to]) continue;
+            if (selected[node.to]) continue;
             selected[node.to] = true;
 
-            // System.out.println("+++poll+++\n" + node.to + " " + node.w);
             for (Node nnode : graph[node.to]) {
-                // nnode: [to, w]
                 if (!selected[nnode.to] && nnode.w < dp[nnode.to]) {
-                    // System.out.println("===offer===\n" + nnode[0] + " " + nnode[1]);
                     dp[nnode.to] = nnode.w;
                     pq.offer(new Node(nnode.to, nnode.w));
-                    // System.out.println(Arrays.toString(dp));
                 }
             }
         }
