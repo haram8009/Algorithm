@@ -40,7 +40,6 @@ public class Main {
         for (int i = 0; i < K; i++) {
             int node = coloredVertices[i];
             dp[node] = 0;
-            selected[node] = true;
             pq.offer(new Node(node, 0));
         }
         // 2. 거기서부터 그리디하게 노드 연결시킴
