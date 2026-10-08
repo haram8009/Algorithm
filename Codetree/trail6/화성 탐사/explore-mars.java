@@ -60,21 +60,21 @@ public class Main {
         // Please write your code here.
 
         // 0. 가지치기: 상하좌우 중 하나라도 접근 가능한 길이 없으면 도달불가한 기지 존재하는거임 -> -1 출력
-        for (int[] node : nodes) {
-            int possible = 0;
-            for (int d = 0; d < 4; d++) {
-                int nr = node[0] + dr[d];
-                int nc = node[1] + dc[d];
-                if (isInRange(nr, nc, n) && grid[nr][nc] != -1) {
-                    possible++;
-                }
-            }
-            if (possible == 0) {
-                // 도달불가한기지존재
-                System.out.println(-1);
-                return;
-            }
-        }
+//        for (int[] node : nodes) {
+//            int possible = 0;
+//            for (int d = 0; d < 4; d++) {
+//                int nr = node[0] + dr[d];
+//                int nc = node[1] + dc[d];
+//                if (isInRange(nr, nc, n) && grid[nr][nc] != -1) {
+//                    possible++;
+//                }
+//            }
+//            if (possible == 0) {
+//                // 도달불가한기지존재
+//                System.out.println(-1);
+//                return;
+//            }
+//        }
 
         // 활성화 기지 단 1개
         // 모든 활성화 로봇의 총 이동 거리를 최소화 => 최소신장트리
