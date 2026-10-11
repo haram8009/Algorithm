@@ -1,83 +1,63 @@
+import java.io.UncheckedIOException;
 import java.util.*;
-import java.io.*;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static int[] parents;
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
-
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        int K = sc.nextInt();
         int[] coloredVertices = new int[K];
-        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < K; i++) {
-            coloredVertices[i] = Integer.parseInt(st.nextToken());
+            coloredVertices[i] = sc.nextInt();
         }
-
-        List<Node>[] graph = new List[N + 1];
-        for (int i = 1; i <= N; i++) {
-            graph[i] = new ArrayList<>();
+        parents = new int[N + 1];
+        for (int i = 1; i < N + 1; i++) {
+            parents[i] = i;
         }
-
+        int[][] edges = new int[M][3];
         for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            int u = Integer.parseInt(st.nextToken());
-            int v = Integer.parseInt(st.nextToken());
-            int w = Integer.parseInt(st.nextToken());
+            edges[i][0] = sc.nextInt();
+            edges[i][1] = sc.nextInt();
+            edges[i][2] = sc.nextInt();
+        }
+        // Please write your code here.
+        Arrays.sort(edges, (a, b) -> { return Integer.compare(a[2], b[2]); });
 
-            graph[u].add(new Node(v, w));
-            graph[v].add(new Node(u, w));
+        for (int i = 0; i < K - 1; i++) {
+            union(coloredVertices[i], coloredVertices[i + 1]);
         }
 
-        PriorityQueue<Node> pq = new PriorityQueue<>();
-        int[] dp = new int[N + 1];
-        boolean[] selected = new boolean[N + 1];
-        Arrays.fill(dp, 10001);
-
-        // 1. 색칠된 노드를 시작노드로 일단 트리에 넣어버림
-        for (int i = 0; i < K; i++) {
-            int node = coloredVertices[i];
-            dp[node] = 0;
-            pq.offer(new Node(node, 0));
-        }
-        // 2. 거기서부터 그리디하게 노드 연결시킴
-        while (!pq.isEmpty()) {
-            Node node = pq.poll();
-            // if (node.w > dp[node.to]) continue;
-            if (selected[node.to]) continue;
-            selected[node.to] = true;
-
-            for (Node nnode : graph[node.to]) {
-                if (!selected[nnode.to] && nnode.w < dp[nnode.to]) {
-                    dp[nnode.to] = nnode.w;
-                    pq.offer(new Node(nnode.to, nnode.w));
-                }
-            }
-        }
-
-        // 3. 필요한 간선만 채택하여 여러개의 트리가 생성돼있음 -> solved
+        int cnt = K;
+        int idx = 0;
         int answer = 0;
-        for (int i = 1; i <= N; i++) {
-            answer += dp[i];
+        while (cnt < N) {
+            if (union(edges[idx][0], edges[idx][1])) {
+                answer += edges[idx][2];
+                cnt++;
+            }
+            idx++;
         }
 
         System.out.println(answer);
     }
 
-    static class Node implements Comparable<Node> {
-        int to;
-        int w;
+    static int find(int x) {
+        if (parents[x] == x)
+            return x;
+        return parents[x] = find(parents[x]);
+    }
 
-        Node(int to, int w) {
-            this.to = to;
-            this.w = w;
+    static boolean union(int x, int y) {
+        int X = find(x);
+        int Y = find(y);
+
+        if (X == Y) {
+            return false;
         }
 
-        @Override
-        public int compareTo(Node o) {
-            return Integer.compare(this.w, o.w);
-        }
+        parents[X] = Y;
+        return true;
     }
 }
