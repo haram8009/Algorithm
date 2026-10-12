@@ -4,9 +4,9 @@ class Solution {
 	public int solution(int n) {
 		long answer = 0;
 
-		// f(n) = f(n-1) + f(n-2)*2
-		// f(n-1) : 한칸을 세로한칸 차지하게 함
-		// f(n-2) : 두칸을 세로두칸 or 가로두칸으로 차지하게 함
+		// f(n) = f(n-1) + f(n-2)
+		// f(n-1) : 한칸을 세로한칸 차지하게 함 (세로 두칸도 궁극적으로 여기 포함됨)
+		// f(n-2) : 두칸을 가로두칸으로 차지하게 함
 
 		dp = new long[n + 1];
 		dp[0] = 1;
