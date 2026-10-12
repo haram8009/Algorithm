@@ -6,32 +6,24 @@ import java.util.*;
 class Solution {
 	static int n;
 	static double e;
-	static int[] parents;
 
 	static int[] x, y;
-	static Edge[] edges;
-	static int edgeSize;
 
-	static class Edge implements Comparable<Edge> {
-		int from;
+	static List<Node>[] graph;
+
+	static class Node implements Comparable<Node> {
 		int to;
-		long weight;
+		long w;
 
-		public Edge(int from, int to, long weight) {
+		public Node(int to, long w) {
 			super();
-			this.from = from;
 			this.to = to;
-			this.weight = weight;
+			this.w = w;
 		}
 
 		@Override
-		public int compareTo(Edge o) {
-			return Long.compare(this.weight, o.weight);
-		}
-
-		@Override
-		public String toString() {
-			return "Edge [from=" + from + ", to=" + to + ", weight=" + weight + "]";
+		public int compareTo(Node o) {
+			return Long.compare(this.w, o.w);
 		}
 	}
 
@@ -44,88 +36,59 @@ class Solution {
 			st = new StringTokenizer(br.readLine());
 			n = Integer.parseInt(st.nextToken());
 
-			parents = new int[n];
-			edges = new Edge[n * n]; // (1≤N≤1,000)
+			graph = new List[n];
+
 			x = new int[n];
 			y = new int[n];
 
 			st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < n; i++) {
-			    x[i] = Integer.parseInt(st.nextToken());
+				x[i] = Integer.parseInt(st.nextToken());
 			}
 
 			st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < n; i++) {
-			    y[i] = Integer.parseInt(st.nextToken());
+				y[i] = Integer.parseInt(st.nextToken());
 			}
-			
-			for (int i = 0; i < n; i++) {
-				parents[i] = -1; // size로 초기화
-			}
-			
-			st = new StringTokenizer(br.readLine());
-			e = Double.parseDouble(st.nextToken());
 
-			edgeSize = 0;
-			// make edges
-			// i노드와 j노드 사이 거리 리스트 구하기
 			for (int i = 0; i < n; i++) {
+				graph[i] = new ArrayList<>();
 				for (int j = 0; j < n; j++) {
-					if (i == j)
-						continue;
-
 					long dx = x[i] - x[j];
 					long dy = y[i] - y[j];
 					long distanceSquared = dx * dx + dy * dy;
-
-					edges[edgeSize++] = new Edge(i, j, distanceSquared);
+					graph[i].add(new Node(j, distanceSquared));
 				}
 			}
 
-			edges = Arrays.copyOfRange(edges, 0, edgeSize);
-//			System.out.println(Arrays.toString(edges));
-			Arrays.sort(edges);
+			st = new StringTokenizer(br.readLine());
+			e = Double.parseDouble(st.nextToken());
+
+			boolean[] selected = new boolean[n];
+			PriorityQueue<Node> pq = new PriorityQueue<>();
 
 			long amount = 0;
 			int cnt = 0;
-			for (int i = 0; i < edgeSize; i++) {
-				if (cnt == n - 1)
-					break;
 
-				Edge edge = edges[i];
-				if (union(edge.from, edge.to)) {
-					cnt++;
-					amount += edge.weight;
+			pq.add(new Node(0, 0));
+			while (cnt < n) {
+				Node node = pq.poll();
+				if (selected[node.to])
+					continue;
+
+				selected[node.to] = true;
+				amount += node.w;
+				cnt++;
+
+				for (Node nnode : graph[node.to]) {
+					if (!selected[nnode.to]) {
+						pq.offer(nnode);
+					}
 				}
 			}
 
 			// answer = 환경 부담 세율(E)과 각 해저터널 길이(L)의 제곱의 곱(E * L^2)
-			System.out.println("#" + tc + " " + Math.round( e * amount));
+			System.out.println("#" + tc + " " + Math.round(e * amount));
 		}
-	}
-
-	static int find(int x) {
-		if (parents[x] < 0) {
-			return x;
-		}
-		return x = find(parents[x]);
-	}
-
-	static boolean union(int a, int b) {
-		int A = find(a);
-		int B = find(b);
-
-		if (A == B)
-			return false;
-
-		if (parents[A] < parents[B]) {
-			// A size가 더 큼
-			parents[A] += parents[B];
-			parents[B] = A;
-		} else {
-			parents[B] += parents[A];
-			parents[A] = B;
-		}
-		return true;
 	}
 }
