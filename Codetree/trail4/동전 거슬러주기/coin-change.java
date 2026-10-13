@@ -5,6 +5,7 @@ public class Main {
     static int m;
     static int[] dp;
     static int[] coin;
+    static int NOT_SOLVABLE = Integer.MAX_VALUE - 1;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
@@ -20,16 +21,16 @@ public class Main {
 
         f(m);
 
-        // System.out.println(Arrays.toString(dp) +" "+Integer.MAX_VALUE );
+        // System.out.println(Arrays.toString(dp));
 
-        System.out.println(dp[m] != Integer.MAX_VALUE-1 ? dp[m] : -1);
+        System.out.println(dp[m] != NOT_SOLVABLE ? dp[m] : -1);
     }
 
     static int f(int num) {
         if (dp[num] != -1)
             return dp[num];
         // num을 거슬러주는 최소 동전수 구하기
-        int mincnt = Integer.MAX_VALUE - 1; // 오버플로우방지
+        int mincnt = NOT_SOLVABLE; // 오버플로우방지
 
         for (int i = 0; i < n; i++) {
             if (num >= coin[i]) {
