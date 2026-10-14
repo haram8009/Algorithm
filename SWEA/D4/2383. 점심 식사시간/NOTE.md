@@ -2,7 +2,7 @@
 schema_version: 1
 platform: "SWEA"
 title: "[모의 SW 역량테스트] 점심 식사시간"
-problem_url: "https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5Pp2uqA8MDFAXB"
+problem_url: "https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5-BEE6AK0DFAVl"
 problem_id: "2383"
 difficulty: "D4"
 topics: ["완전탐색", "시뮬레이션", "정렬"]
