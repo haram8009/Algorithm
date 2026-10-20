@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+class Solution {
+
+	static int P = 1234567891;
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int t = Integer.parseInt(st.nextToken());
+		// 1 ≤ N ≤ 1000000
+		long[] fact = new long[1_000_001];
+		fact[0] = 1;
+
+		// fact[i] = i! % P
+		for (int i = 1; i < fact.length; i++) {
+			fact[i] = (fact[i - 1] * i) % P;
+		}
+
+		for (int tc = 1; tc <= t; tc++) {
+			st = new StringTokenizer(br.readLine());
+			int n = Integer.parseInt(st.nextToken());
+			int r = Integer.parseInt(st.nextToken());
+			// 페르마의 소정리
+			// 나머지정리
+			// 지수승 구하기 분할정복
+			// nCr = n! / (n-r)! r!
+			// (n! %P * 1/(n-r)! %P * 1/r! %P)
+
+			long denom = fact[n - r] * fact[r] % P;
+
+			long answer = fact[n] % P * pow(denom, P - 2) % P;
+
+			System.out.println("#" + tc + " " + answer);
+		}
+
+	}
+
+	static long pow(long base, long exp) {
+		if (exp == 0)
+			return 1;
+
+		long half = pow(base, exp / 2) % P;
+		long result = half * half % P;
+
+		if (exp % 2 == 1)
+			result = base * result % P;
+		return result;
+	}
+
+}
