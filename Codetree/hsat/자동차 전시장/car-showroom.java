@@ -1,10 +1,14 @@
 import java.util.*;
+import java.io.*;
+
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int k = sc.nextInt();
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
 
         List<Integer>[] graph = new List[n + 1];
         for (int i = 1; i <= n; i++) {
@@ -13,13 +17,15 @@ public class Main {
 
         int[][] edges = new int[m][2];
         for (int i = 0; i < m; i++) {
-            edges[i][0] = sc.nextInt();
-            edges[i][1] = sc.nextInt();
+            st = new StringTokenizer(br.readLine());
+            edges[i][0] = Integer.parseInt(st.nextToken());
+            edges[i][1] = Integer.parseInt(st.nextToken());
             graph[edges[i][0]].add(edges[i][1]);
         }
+        st = new StringTokenizer(br.readLine());
         int[] startPoints = new int[k];
         for (int i = 0; i < k; i++) {
-            startPoints[i] = sc.nextInt();
+            startPoints[i] = Integer.parseInt(st.nextToken());
         }
         // 모든사람이 도달 가능한 노드에만 전시장 설치 가능
         // 노드수 n 간선수 m 사람수 k (k는 전부 서로 다른 노드에 있음)
