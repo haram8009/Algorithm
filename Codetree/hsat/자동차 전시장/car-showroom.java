@@ -41,7 +41,7 @@ public class Main {
 
         for (int i = 0; i < k; i++) {
             boolean[] visited = new boolean[n + 1];
-            PriorityQueue<Node> pq = new PriorityQueue<>();
+            Queue<Node> pq = new ArrayDeque<>();
             pq.offer(new Node(startPoints[i], 0));
 
             while (!pq.isEmpty()) {
