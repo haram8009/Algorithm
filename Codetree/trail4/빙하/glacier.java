@@ -14,7 +14,7 @@ public class Main {
         int cnt = 0;
         boolean[][] visited = new boolean[n][m];
 
-        PriorityQueue<Node> q = new PriorityQueue<>();
+        ArrayDeque<Node> q = new ArrayDeque<>();
         q.offer(new Node(0, 0, 0));
 
         while (!q.isEmpty()) {
@@ -42,9 +42,9 @@ public class Main {
                 int nc = node.c + dc[d];
                 if (inRange(n, m, nr, nc) && !visited[nr][nc]) {
                     if (grid[nr][nc] == 1)
-                        q.offer(new Node(nr, nc, t + 1));
+                        q.offerLast(new Node(nr, nc, node.t + 1));
                     else
-                        q.offer(new Node(nr, nc, t));
+                        q.offerFirst(new Node(nr, nc, node.t));
                 }
             }
 
