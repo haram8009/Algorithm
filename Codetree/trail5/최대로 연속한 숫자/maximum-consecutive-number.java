@@ -9,17 +9,15 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
         int[] removals = new int[m];
-        for (int i = 0; i < m; i++) {
-            removals[i] = sc.nextInt();
-        }
-        // Please write your code here.
         s = new TreeSet<>();
         s.add(-1);
         s.add(n + 1);
         tm = new TreeMap<>();
         tm.put(n + 1, 1);
+        int num;
+        for (int i = 0; i < m; i++) {
+            num = sc.nextInt();
 
-        for (int num : removals) {
             s.add(num);
             int h = s.higher(num);
             int l = s.lower(num);
@@ -33,7 +31,7 @@ public class Main {
             tm.put(right, tm.getOrDefault(right, 0) + 1);
 
             System.out.println(tm.lastKey());
-        }
 
+        }
     }
 }
